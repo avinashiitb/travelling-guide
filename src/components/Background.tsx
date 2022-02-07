@@ -7,20 +7,32 @@ import {
 
 type Props = {
   children: React.ReactNode;
+  styleProps: {
+    container: {
+      flex: number
+      padding: number
+      width: String
+      maxWidth?: number
+      alignSelf: String
+      alignItems: String
+      justifyContent: String
+    }
+  }
 };
 
-const Background = ({ children }: Props) => (
-  <ImageBackground
-    source={require('../assets/background_dot.png')}
-    resizeMode="repeat"
-    style={styles.background}
-  >
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      {children}
-    </KeyboardAvoidingView>
-  </ImageBackground>
-);
-
+const Background = ({ children, styleProps }: Props) => {
+  return (
+    <ImageBackground
+      source={require('../assets/background_dot.png')}
+      resizeMode="repeat"
+      style={styles.background}
+    >
+      <KeyboardAvoidingView style={styleProps ? styleProps.container : styles.container} behavior="padding">
+        {children}
+      </KeyboardAvoidingView>
+    </ImageBackground>
+  );
+}
 const styles = StyleSheet.create({
   background: {
     flex: 1,
